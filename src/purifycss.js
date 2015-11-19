@@ -1,5 +1,6 @@
 var fs = require('fs');
 var _ = require('underscore');
+var chalk = require('chalk');
 var CleanCss = require('clean-css');
 var CssSyntaxTree = require('./cssTree.js');
 var Extraction = require('./extraction.js');
@@ -132,10 +133,16 @@ var printInfo = function(startTime, beginningLength, endingLength){
 };
 
 var printRejected = function(rejectedTwigs){
-  console.log('##################################');
-  console.log('Rejected selectors:');
-  console.log(_.map(rejectedTwigs, getRuleString).join('\n'));
-  console.log('##################################');
+  var rejectedSelectors = _.map(rejectedTwigs, getRuleString);
+
+  if(rejectedSelectors.length > 0) {
+    console.log('##################################');
+    console.log('Rejected' + rejectedSelectors.length + ' selectors:');
+    console.log(rejectedSelectors.join('\n'));
+    console.log('##################################');
+  } else {
+    console.log(chalk.green('    ✓ clean'))
+  }
 }
 
 var htmlEls = ['h1','h2','h3','h4','h5','h6','a','abbr','acronym','address','applet','area','article','aside','audio','b','base','basefont','bdi','bdo','bgsound','big','blink','blockquote','body','br','button','canvas','caption','center','cite','code','col','colgroup','command','content','data','datalist','dd','del','details','dfn','dialog','dir','div','dl','dt','element','em','embed','fieldset','figcaption','figure','font','footer','form','frame','frameset','head','header','hgroup','hr','html','i','iframe','image','img','input','ins','isindex','kbd','keygen','label','legend','li','link','listing','main','map','mark','marquee','menu','menuitem','meta','meter','multicol','nav','nobr','noembed','noframes','noscript','object','ol','optgroup','option','output','p','param','picture','plaintext','pre','progress','q','rp','rt','rtc','ruby','s','samp','script','section','select','shadow','small','source','spacer','span','strike','strong','style','sub','summary','sup','table','tbody','td','template','textarea','tfoot','th','thead','time','title','tr','track','tt','u','ul','var','video','wbr','xmp'];
