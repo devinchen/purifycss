@@ -70,7 +70,7 @@ var purify = function(searchThrough, css, options, callback){
   }
 
   if(options.rejected){
-    printRejected(rejectedSelectorTwigs.concat(rejectedAtRuleTwigs));
+    printRejected(rejectedSelectorTwigs.concat(rejectedAtRuleTwigs), css);
   }
 
   if(!options.output){
@@ -132,12 +132,16 @@ var printInfo = function(startTime, beginningLength, endingLength){
   console.log('This function took: ', new Date() - startTime, 'ms');
 };
 
-var printRejected = function(rejectedTwigs){
+var printRejected = function(rejectedTwigs, cssFiles){
   var rejectedSelectors = _.map(rejectedTwigs, getRuleString);
+  var cssPath = Array.isArray(cssFiles) ? cssFiles.join('\n') : cssFiles;
+
+  console.log('Check');
+  console.log(cssPath);
 
   if(rejectedSelectors.length > 0) {
     console.log('##################################');
-    console.log('Rejected' + rejectedSelectors.length + ' selectors:');
+    console.log(chalk.bgRed('Rejected ' + rejectedSelectors.length + ' selectors:'));
     console.log(rejectedSelectors.join('\n'));
     console.log('##################################');
   } else {
