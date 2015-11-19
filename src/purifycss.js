@@ -136,16 +136,15 @@ var printRejected = function(rejectedTwigs, cssFiles){
   var rejectedSelectors = _.map(rejectedTwigs, getRuleString);
   var cssPath = Array.isArray(cssFiles) ? cssFiles.join('\n') : cssFiles;
 
-  console.log('Check');
   console.log(cssPath);
 
   if(rejectedSelectors.length > 0) {
-    console.log('##################################');
+    console.log('----------------------------------');
     console.log(chalk.bgRed('Rejected ' + rejectedSelectors.length + ' selectors:'));
-    console.log(rejectedSelectors.join('\n'));
-    console.log('##################################');
+    console.log(rejectedSelectors.join(', '));
+    console.log('----------------------------------');
   } else {
-    console.log(chalk.green('    ✓ clean'))
+    console.log(chalk.green('  ✓ clean'))
   }
 }
 
