@@ -4,6 +4,7 @@
   "description": "Removed unused css. Compatible with single-page apps.",
   "main": "./src/purifycss.js",
   "dependencies": {
+    "chalk": "^1.1.1",
     "clean-css": "^3.2.10",
     "gonzales": "^1.0.7",
     "underscore": "^1.8.3",
