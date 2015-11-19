@@ -137,7 +137,7 @@ var printRejected = function(rejectedTwigs){
 
   if(rejectedSelectors.length > 0) {
     console.log('##################################');
-    console.log('Rejected' + rejectedSelectors.length + ' selectors:');
+    console.log(chalk.bgRed('Rejected ' + rejectedSelectors.length + ' selectors:'));
     console.log(rejectedSelectors.join('\n'));
     console.log('##################################');
   } else {
